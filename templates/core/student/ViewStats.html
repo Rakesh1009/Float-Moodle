@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<!--{% load static %}-->
+{% block title %}Courses{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="container">
+        
+        <div class="col-12 col-sm-6 col-md-10">
+            <br>
+            <br>
+            <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />
+            <br>
+            <br>
+                    <strong><h3>Course Statistics for {{ request.user.first_name }}</h3></strong>
+        <hr/>
+
+
+           {% for key, value in mar_obtained.items %}
+                <p> <h4>Course Name</h4> {{ key }} </p>
+
+                <p> <h4>Marks Obtained</h4> {{ value }}</p>
+
+                <p> <h4> Total Marks: </h4> {{ total.key }} </p>
+                <br/>
+                <!--<a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>-->
+                  <hr/>
+
+                  <br>
+                  <br> 
+            {% endfor %}
+
+            <br/>
+
+
+        </div>
+
+    </div>
+    {% endblock %}

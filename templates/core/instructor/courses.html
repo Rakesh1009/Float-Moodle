@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+<!--{% load static %}-->
+{% block title %}Courses{% endblock %}
+
+
+{% block content %}
+{% if request.user.is_authenticated and request.user.role == 'instructor' %}
+
+
+    <div class="container">
+        
+        <div class="col-12 col-sm-6 col-md-10">
+            <br>
+            <br>
+            <!--<input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />-->
+  <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:home' %}"; value="Home" />
+            <br>
+            <br>
+                    <strong><h3>Courses</h3></strong>
+        <hr/>
+
+
+           {% for foo in course %}
+                {% if foo.user == request.user %}
+
+                <p> <h4>Course Name</h4> {{ foo.course_name }} </p>
+
+                <p> <h4>Name</h4>  {{ foo.user.first_name }} {{ foo.user.last_name }} </p>
+
+                <p> <h4>Details</h4> {{ foo.course_description }} </p>
+
+                <br/>
+                <!--<a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>-->
+                  <hr/>
+
+                  <br>
+                  <br> 
+              
+                  <br>
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-create' %}"; value="Create Assignment" /> 
+        <br>
+        <br>
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-list' %}"; value="View Assignments" /> 
+            {% endif %}
+            {% endfor %}
+
+            <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:250px; height:40px; color:white; " onclick=location.href="{% url 'core:invite' %}"; value="Invite to floatmoodle" />
+
+
+            <br/>
+
+
+            <br/>
+
+
+        </div>
+
+    </div>
+    {% elif request.user.is_authenticated and request.user.role == 'student' %}
+    <div class="container">
+        
+        <div class="col-12 col-sm-6 col-md-10">
+            <br>
+            <br>
+            <!--<input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:80px; height:40px; color:white; " onclick="location.href='http://127.0.0.1:8000/';" value="Home" />-->
+  <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:home' %}"; value="Home" />
+            <br>
+            <br>
+                    <strong><h3>Courses</h3></strong>
+        <hr/>
+
+
+           
+            {% for foo in course %}
+
+                <p> <h4>Course Name</h4> {{ foo.course_name }} </p>
+
+                <p> <h4>Name</h4> {{ foo.user.first_name }} {{ foo.user.last_name }} </p>
+
+                <p> <h4>Details</h4> {{ foo.course_description }} </p>
+
+                <br/>
+                <!--<a href="{% url 'core:assignment-submission-delete' foo.id %}">Delete Assignment</a>-->
+                <hr/>
+
+                 
+
+            {% endfor %}
+
+            <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-list' %}"; value="View Assignments" />
+
+
+            <br/>
+
+
+            <br/>
+
+
+        </div>
+
+    </div>
+    
+
+    {% else %}
+
+    404 Not Found
+
+    {% endif %}
+
+
+   
+{% endblock %}

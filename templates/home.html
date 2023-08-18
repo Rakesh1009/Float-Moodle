@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+{% if request.user.is_authenticated and request.user.role == 'instructor' %}
+    <font size="6"
+            face="arial"
+            color="black">
+    Float - Moodle
+    </font>  
+    <center>
+    <br>
+    <h1> Welcome {{ request.user.first_name }} </h1>
+    <br>
+    <ul >
+        <!--<li><a href="{% url 'authentication:instructor-profile-update' %}"> Edit Profile</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:instructor-profile-update' %}"; value="Edit Profile" /> 
+        <!--<li><a href="{% url 'authentication:logout' %}"> Logout</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:logout' %}"; value="Log Out" /> 
+
+    </ul>
+
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:course-create' %}"; value="Create Course" /> 
+    <br>
+    <br>
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:course' %}"; value="View Courses" /> 
+
+    <br>
+    <!--<input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-create' %}"; value="Create Assignment" /> 
+    <br>
+    <br>
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-list' %}"; value="View Assignments" /> -->
+    <br>
+    <br>
+    <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:ViewForum' %}"; value="View Forum" />
+
+{% elif request.user.is_authenticated and request.user.role == 'student' %}
+<font size="6"
+face="arial"
+color="black">
+Float - Moodle
+</font>  
+<center>
+
+    
+        <h1>
+            Welcome {{ request.user.first_name }}
+        </h1>
+    
+
+    <ul>
+
+        <!--<li><a href="{% url 'authentication:student-profile-update' %}"> Edit Profile</a></li>
+        <li><a href="{% url 'authentication:logout' %}"> Logout</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:student-profile-update' %}"; value="Edit Profile" />
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:logout' %}"; value="Log Out" /> 
+        <br>
+        <br>
+
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:course' %}"; value="View Courses" /> 
+        <br>
+        <br>
+        <!--<input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:assignment-list' %}"; value="View Assignments" /> -->
+        <br>
+        <br>
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:ViewForum' %}"; value="View Forum" />
+        
+        <br>
+        <br>
+        <!--<input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:160px; height:40px; color:white; " onclick=location.href="{% url 'core:ViewStats' %}"; value="View Statistics" />-->
+
+    </ul>
+
+{% else %}
+  <body>
+
+  <center>
+
+  <br>
+  <br>
+  <font size="6"
+          face="arial"
+          color="black">
+   Float - Moodle
+  </font>
+  <br>
+  <br>
+  <h1>Register as</h1>
+    <ul>
+        <!--<li><a href='{% url "authentication:instructor-register" %}'> INSTRUCTOR</a></li>-->
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:instructor-register' %}"; value="INSTRUCTOR" /> 
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:student-register' %}"; value="STUDENT" />
+        <!--<li><a href="{% url 'authentication:student-register' %}"> STUDENT</a></li>-->
+    </ul>
+  
+
+  
+    <!--<a href="{% url 'authentication:login' %}">
+        <p> Login</p>
+    </a> -->
+
+        <input type="button" style="background-color:#0066FF; border-collapse:collapse; border-radius:5px 5px; width:120px; height:40px; color:white; " onclick=location.href="{% url 'authentication:login' %}"; value="LOGIN" />
+    
+
+
+  <br>
+  <br>
+  
+  </body> 
+{% endif %}
+{% endblock %}
